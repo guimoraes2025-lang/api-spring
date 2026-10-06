@@ -5,7 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/tarefas.html")
+@RequestMapping("/tarefas")
 public class TarefaWebController {
 
     private final TarefaService tarefaService;
@@ -16,9 +16,9 @@ public class TarefaWebController {
 
     @GetMapping
     public String listarTarefas(Model model) {
-        model.addAttribute("tarefas.html", tarefaService.listarTodas());
+        model.addAttribute("tarefas", tarefaService.listarTodas());
         model.addAttribute("novaTarefa", new Tarefa());
-        return "tarefas.html"; // Nome do template: tarefas.html.html
+        return "tarefas"; // Nome do template: tarefas.html.html
     }
 
     @PostMapping
@@ -26,18 +26,18 @@ public class TarefaWebController {
         if (tarefa.getDescricao() != null && !tarefa.getDescricao().trim().isEmpty()) {
             tarefaService.criar(tarefa);
         }
-        return "redirect:/tarefas.html";
+        return "redirect:/tarefas";
     }
 
     @PostMapping("/{id}/alternar")
     public String alternarStatus(@PathVariable Long id) {
         tarefaService.alternarStatus(id);
-        return "redirect:/tarefas.html";
+        return "redirect:/tarefas";
     }
 
     @PostMapping("/{id}/excluir")
     public String excluirTarefa(@PathVariable Long id) {
         tarefaService.deletar(id);
-        return "redirect:/tarefas.html";
+        return "redirect:/tarefas";
     }
 }

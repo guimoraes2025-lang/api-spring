@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/tarefas.html")
+@RequestMapping("/api/tarefas")
 @CrossOrigin(origins = "*")
 public class TarefaRestController {
 
